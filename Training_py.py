@@ -94,16 +94,3 @@ with open('model.pkl', 'wb') as f:
     pickle.dump(model, f)
 
 print("Vectorizer and model saved successfully!")
-
-
-
-
-
-
-
-
-
-
-
-
-
