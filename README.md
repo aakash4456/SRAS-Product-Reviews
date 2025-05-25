@@ -1,105 +1,207 @@
-# Sentiment and Rating Analysis System(SRAS) for Product Reviews
+# Sentiment and Rating Analysis System (SRAS) for Product Reviews
 
-## Introduction
+## 🔍 Introduction
 
-The SRAS for Product Reviews is a Python-based application designed to analyze product reviews and predict their sentiment as positive or negative. The project leverages natural language processing (NLP) techniques, including TF-IDF vectorization, and employs a Decision Tree classifier for prediction. The project also features a GUI built with Tkinter for user interaction, allowing users to analyze reviews and evaluate rating relevance.
+**SRAS** (Sentiment and Rating Analysis System) is a full-stack machine learning web application that analyzes product reviews to determine their sentiment (positive or negative) and checks if the sentiment aligns with the given user rating. It is built with a **FastAPI backend**, a modern **React.js frontend** styled with **Tailwind CSS**, and includes a custom **model training pipeline** using **scikit-learn**, **NLTK**, and **TF-IDF vectorization**.
 
-## Prerequisites
+---
 
-Before you begin, ensure the following are installed on your machine:
+## 🛠️ Technologies Used
 
-* Python (v3.7 or higher)
-* pip (Python package installer)
+### 🔙 Backend
+- Python 3.x
+- FastAPI
+- scikit-learn
+- pandas
+- matplotlib (for visualization)
+- seaborn (optional styling)
+- NLTK (tokenization + stopwords)
+- pickle (for model storage)
+- WordCloud (for review analysis)
+- tqdm (for preprocessing progress bar)
 
-## Setup Instructions
+### 🔜 Frontend
+- React.js (via Vite)
+- Axios (for API interaction)
+- Tailwind CSS (UI Styling)
 
-1. Clone the Repository
+---
 
-```bash
-git clone https://github.com/aakash4456/SRAS.git
-cd SRAS
+## 🗂️ Project Structure
+
+```
+SRAS Product Reviews Project/
+│
+├── backend/
+│   ├── api.py               # API for sentiment analysis and rating evaluation
+│   ├── model.pkl            # Serialized Decision Tree model (generated after training)
+│   └── vectorizer.pkl       # Serialized TF-IDF vectorizer (generated after training)
+│
+├── frontend/
+│   └── sras-ui/
+│       ├── node_modules/
+│       └── src/
+│           ├── App.jsx      # Main frontend component
+│           ├── App.css
+│           ├── index.css
+│           └── main.jsx
+│
+├── training/
+│   ├── Training_Data.csv    # Labeled dataset for training
+│   ├── Training_py.py       # Core training script wrapped in a function
+│   └── update_model.py      # Automates training and moves model to backend
+│
+├── requirements.txt         # Python backend dependencies
+└── README.md                # Project documentation
 ```
 
-2. Install Dependencies
+---
 
+## ✨ Features
+
+1. **Sentiment Analysis**
+
+   * Predicts sentiment of the review (Positive or Negative) using trained ML model.
+
+2. **Rating Relevance Check**
+
+   * Compares the predicted sentiment with the numeric rating (e.g., 1–5 stars) to determine if the rating reflects the actual sentiment.
+
+3. **Live Review Input**
+
+   * Users can enter reviews and ratings in the frontend to get instant feedback.
+
+4. **Retrainable Model Pipeline** with automated packaging
+
+   * Just run `update_model.py` with new data to retrain and update your ML pipeline.
+
+5. **Tokenization + Stopword Removal** with NLTK
+
+6. **React-FastAPI Integration** using Axios
+
+7. **Modern Web UI** to input and analyze reviews
+
+   * Decoupled frontend (React) and backend (Python) for better scalability and maintainability.
+
+8. **Clear Separation of Concerns**
+
+   * Decoupled frontend (React) and backend (Python) for better scalability and maintainability.
+
+---
+
+## 🚀 Getting Started
+
+### Step 1: Clone the Repository
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/aakash4456/SRAS-Product-Reviews.git
+cd "SRAS Product Reviews Project"
 ```
 
-3. Download NLTK Resources
+---
+
+### Step 2: Backend Setup
+```bash
+cd backend
+pip install -r ../requirements.txt
+```
+
+Ensure `nltk` downloads are in place. Run once:
 Open a Python shell and run:
-```bash
+
+```python
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 ```
 
-4. Run the Application
-To launch the GUI application, execute:
+Now start the backend:
 ```bash
-python App.py
+uvicorn api:app --reload
 ```
 
-## Project Structure
+---
 
+### Step 3: Train or Update the Model
 ```bash
-src/
-.
-├── Training_py.py            # Core script for training and saving the model
-├── app.py                 # GUI application for analyzing reviews
-├── Training_Data.csv      # Dataset containing reviews
-├── requirements.txt       # Python dependencies
-├── vectorizer.pkl         # Saved TF-IDF vectorizer
-├── model.pkl              # Trained Decision Tree model
-└── README.md              # Project documentation
+cd training
+python update_model.py
 ```
 
-## Features
+This will:
+- Train the model from `Training_Data.csv`
+- Generate `model.pkl` and `vectorizer.pkl`
+- Move both into `/backend`
 
-1. Sentiment Analysis:
-* Classifies reviews as positive or negative based on their content.
+---
 
-1. Rating Relevance Check:
-* Compares predicted sentiment with user-provided ratings to determine alignment.
-* 
-1. Word Cloud Visualization:
-* Generates a word cloud for positive reviews as an optional step.
-* 
-1. GUI:
-* Provides a user-friendly interface for entering reviews and ratings, displaying results instantly.
-
-## Key Technologies
-
-* Natural Language Processing (NLP)
-* TF-IDF Vectorization
-* Decision Tree Classifier
-* Tkinter
-
-## Contributing
-
-We welcome contributions to this project! Follow these steps:
-
-1. Fork the Repository: Create your own fork of the repository.
-2. Create a Branch:
+### Step 4: Frontend Setup
 ```bash
-git checkout -b feature-branch-name
+cd ../frontend/sras-ui
+npm install
+npm run dev
 ```
-3. Make Your Changes: Implement your feature or fix.
-4. Commit Your Changes:
+Visit: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 📦 requirements.txt
+
+```
+fastapi
+uvicorn
+pydantic
+scikit-learn
+pandas
+nltk
+matplotlib
+seaborn
+tqdm
+wordcloud
+```
+
+Use:
 ```bash
-git commit -m "Describe your changes"
+pip install -r requirements.txt
 ```
-5. Push to Your Branch:
+
+---
+
+## 🔮 Future Enhancements
+
+* Aspect-based sentiment analysis
+* Multi-class sentiment classification (positive, negative, neutral)
+* Model explainability using LIME or SHAP
+* Sentiment trends visualization
+* Admin panel to manage reviews and retrain models
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions to improve SRAS!
+
+1. Fork the Repository
+2. Create a Feature Branch
+
 ```bash
-git push origin feature-branch-name
+git checkout -b your-feature-name
 ```
-6. Create a Pull Request: Submit your branch for review.
 
-## Contact
+3. Make Your Changes
+4. Commit and Push
 
-For questions, suggestions, or feedback, feel free to reach out:
+```bash
+git commit -m "Add: Your feature"
+git push origin your-feature-name
+```
 
+5. Open a Pull Request 🚀
 
+---
 
-- Email: [aakash4456bhu@gmail.com](aakash4456bhu@gmail.com)
-- GitHub: [GitHub Profile](https://github.com/aakash4456)
+## 📬 Contact
+
+* Email: [aakash4456bhu@gmail.com](mailto:aakash4456bhu@gmail.com)
+* GitHub: [@aakash4456](https://github.com/aakash4456)
+
+---
