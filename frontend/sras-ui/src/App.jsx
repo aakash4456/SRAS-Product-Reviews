@@ -23,7 +23,6 @@ export default function App() {
   };
 
   return (
-    // <div className="min-h-screen flex items-center justify-center bg-[#FAF5E9] px-4 py-8">
     <div className="min-h-screen flex items-center justify-center bg-[#060f3a] px-4 py-8">
       <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-xl animate-fade-in">
         <h1 className="text-3xl font-bold text-center text-[#009B4D] mb-2 tracking-wide">
