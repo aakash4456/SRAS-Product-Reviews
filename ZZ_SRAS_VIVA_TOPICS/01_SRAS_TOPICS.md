@@ -2,6 +2,23 @@ Okay, this is excellent! Having your full project report draft and codebase allo
 
 Here are the key topics you should definitely be prepared to discuss, with explanations tailored to your SRAS project:
 
+
+https://www.geeksforgeeks.org/natural-language-processing-overview/
+
+
+
+
+https://www.geeksforgeeks.org/natural-language-processing-nlp-tutorial/
+
+
+
+
+
+
+
+
+
+
 **I. Project Overview & Motivation (High-Level)**
 
 1.  **Problem Statement in Your Own Words:**
